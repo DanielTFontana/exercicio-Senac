@@ -9,7 +9,7 @@ class Store {
         this.nome = document.getElementById('nome').value
         this.valor = document.getElementById('valor').value
         this.img = document.getElementById('img')
-        this.img.src = localStorage.setItem('img',this.img)
+        this.img.src = localStorage.setItem('img',this.img) //dúvida de como armazenar img e exibir depois
         const obj = 
             {
                 nome:this.nome,
