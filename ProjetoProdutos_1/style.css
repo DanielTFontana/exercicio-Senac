@@ -1,0 +1,37 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#container{
+text-align: center;
+padding: 20px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font: bold;
+width: 100vw;
+
+}
+#loja{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px   ;
+}
+#produto1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px   ;
+
+}
+#img{
+    display: none;
+}
+#fakeButton{
+    background-color: rgb(176, 173, 173);
+    cursor: pointer;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
