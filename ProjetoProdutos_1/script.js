@@ -9,12 +9,14 @@ class Store {
         this.nome = document.getElementById('nome').value
         this.valor = document.getElementById('valor').value
         this.img = document.getElementById('img')
-        this.img.src = localStorage.setItem('img',this.img) //dúvida de como armazenar img e exibir depois
-        const obj = 
+        const arquivo = this.img.files[0]
+        const caminho = arquivo.name
+
+        const obj =
             {
                 nome:this.nome,
                 valor: this.valor,
-                img:localStorage.getItem('img')
+                img:caminho,
             }
 
         let verificar = !Object.values(obj).every(x => x !== '' && x !== null)
@@ -36,7 +38,7 @@ class Store {
         campo.innerHTML += `<div> Elementos Salvos:
         Nome:${getDados.nome}
         <br>Valor:${getDados.valor}
-        <br>Imagem:${getDados.img}
+        <br>Imagem:${getDados.caminho}
         </div>`
         console.log(getDados)
 
