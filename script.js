@@ -59,8 +59,8 @@ excluir(){
     this.excluirPosicao = document.getElementById('remover').value
     let pegandoArray =localStorage.getItem('save')
     let stringObj = JSON.parse(pegandoArray)
-    stringObj.splice(this.excluirPosicao,1)
-    console.log(arrayObj)
+    stringObj.splice(parseInt(this.excluirPosicao),1)
+    console.log(stringObj)
 }
 
 
