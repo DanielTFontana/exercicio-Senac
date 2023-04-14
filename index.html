@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet">
 </head>
 <body>
     <div id="container">
@@ -25,7 +25,9 @@
                 <label for="valor">Valor:</label>
                 <input type="number" name="valor" id="valor" placeholder="valor do produto">
                 </div>
-                <input type="number" name="remover" id="remover">
+
+                <label for="remo">Índice que deseja remover:</label>
+                <input type="number" placeholder="numero do índice" name="remover" id="remover">
                 <div id="retorno"></div>
 
 
