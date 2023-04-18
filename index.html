@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
-    <link rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="container">
@@ -16,15 +16,15 @@
             <h3>Cadastre seu produto</h3>
             <div id="produto1">
 
-                <div>
+                
                 <label for="nome">Nome:</label>             
                 <input type="text" name="nome" id="nome" placeholder="nome do produto">
-                </div>
+                
 
-                <div>
+                
                 <label for="valor">Valor:</label>
                 <input type="number" name="valor" id="valor" placeholder="valor do produto">
-                </div>
+                
 
                 <label for="remo">Índice que deseja remover:</label>
                 <input type="number" placeholder="numero do índice" name="remover" id="remover">
@@ -32,8 +32,23 @@
 
 
                 <input type="button" value="Salvar" onclick="store.addProdutos()">
-                <input type="button" value="exlcuir" onclick="store.excluir()">
+                <input type="button" value="Exlcuir" onclick="store.excluir()">
 
+                
+                    <label for="findId">Qual Id deseja modificar:</label>
+                    <input type="number" placeholder="numero da Id" name="findId" id="findId">
+                    <input type="button" value="encontrar" onclick="store.encontrar()">
+                
+
+                
+                <input type="button" value="Atualizar" oncanplay="store.atualizar()">
+
+                <label for="attNome">Digite o novo nome</label>
+                <input type="text" name="attNome" placeholder="novo nome" id="attNome">
+
+                <label for="attValor">Digite o novo valor</label>
+                <input type="number" name="attValor" placeholder="novo valor" id="attValor">
+                
 
         </div>
 

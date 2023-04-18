@@ -1,25 +1,27 @@
+let conjunto = []
 class Store {
     constructor(){
         this.nome = ''
         this.valor = ''
-        this.excluirPosicao = ''
-        this.id = ''
-        this.dadosAposExluir = []
+        this.id = 0
+        this.deletar = this.excluir()
+        
     }
     addProdutos(){
-        
+debugger
         this.nome = document.getElementById('nome').value
         this.valor = document.getElementById('valor').value
-        this.retorno = document.getElementById('retorno')        
-        let conjunto = []
-        this.id = conjunto.length+1
+        this.retorno = document.getElementById('retorno')   
+        this.deletar = this.excluir
         let obj =
             {
                 nome:this.nome,
                 valor: this.valor,
-                
+                id:this.id++,
+                deletar: this.deletar
             }
 
+           
         let verificar = !Object.values(obj).every(x => x !== '' && x !== null)
         if(verificar){
             alert('Campo Vazio')
@@ -35,9 +37,8 @@ class Store {
                 localStorage.setItem('save', toString)
             }
             else{
-                let addProdutos = JSON.parse(save)
+                let addProdutos =JSON.parse(save)    
                 let verificar = addProdutos.some(( i => i.nome === obj.nome))               
-
                 if(verificar){
                     alert('Produto já cadastrado.')
                     return;
@@ -46,35 +47,47 @@ class Store {
             let showArray = JSON.stringify(addProdutos)
             localStorage.setItem('save', showArray)
             console.log(addProdutos)
-            this.retorno.innerHTML=`<p> ${this.id} ${showArray} </p>` //só retorna o id na frente de um array, o restante vem sem            
-            }//para salvar esta precisando salvar 2x. Às vezes aparece o [object, Object] igual ontem
+            this.retorno.innerHTML=`<p> ${showArray} </p>` 
+            }
     
             
         }
 }
 excluir(){
 
-
-    debugger
-    
-    this.excluirPosicao = document.getElementById('remover').value
     let pegandoArray =localStorage.getItem('save')
     let stringObj = JSON.parse(pegandoArray)
-    stringObj.splice(parseInt(this.excluirPosicao),1)
+    stringObj.splice(parseInt(this.excluirPosicao),1,)   
 
+    this.dadosAposExluir= JSON.stringify(stringObj)
 
-    this.dadosAposExluir=stringObj
-    
-   
-  
     stringObj = JSON.stringify(stringObj)
-
-    localStorage.setItem("save", stringObj)
     this.retorno.innerHTML =`<p> ${this.dadosAposExluir}</p>`
-    console.log(this.dadosAposExluir)//não funciona repedidamente
+    localStorage.setItem("save", stringObj)
+    
+    console.log(this.dadosAposExluir)
+}
+
+encontrar(){
+    let findID = document.getElementById('findId').value
+    let getArray = localStorage.getItem('save')
+    
+    let passarArray = JSON.parse(getArray)
+    console.log (passarArray)
+    for(let i = 0; i <passarArray.length; i++){
+        console.log(passarArray[findID])
+    }
+
+
 }
 atualizar(){
+    //encontrar o id do elemento e depois alterar
 
+    let newNome = document.getElementById('attNome')
+    let newValor = document.getElementById('attValor')
+
+    this.nome = newNome
+    this.valor = newValor
 }
 
 
