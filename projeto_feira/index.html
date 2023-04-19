@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Feira</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="conteiner">
+        <header>
+            <h1>Cadastro de Produtos</h1>
+            <p>Agricultores e feirante, cadastre aqui seus produtos</p>
+        </header>
+
+        <main>
+
+            <div id="card">
+                <label for="nome">Nome do Produto:</label>
+                <input type="text" name="nome" id="nome">
+
+                <label for="valor">Valor do Produto:</label>
+                <input type="number" name="valor" id="valor"> 
+                
+                <input type="button" onclick="produto.add()" value="Adicionar">
+                <input type="button" value="Deletar" onclick="produto.excluir()">
+            </div>
+                
+            <div id="content">
+                <h3>Lista de Produtos:</h3>
+             <table border="1">
+                <thead>
+                    <tr>
+                    <td>Id</td>
+                    <td>Nome</td>
+                    <td>Valor</td>
+                    <td>Ações</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                 
+                </tbody>
+             </table>
+                </div>
+            
+        </main>
+    </div>  
+</body>
+</html>
