@@ -4,21 +4,20 @@ class Store {
         this.nome = ''
         this.valor = ''
         this.id = 0
-        this.deletar = this.excluir()
+
         
     }
     addProdutos(){
-debugger
+
         this.nome = document.getElementById('nome').value
         this.valor = document.getElementById('valor').value
         this.retorno = document.getElementById('retorno')   
-        this.deletar = this.excluir
         let obj =
             {
                 nome:this.nome,
                 valor: this.valor,
                 id:this.id++,
-                deletar: this.deletar
+
             }
 
            
@@ -68,28 +67,50 @@ excluir(){
     console.log(this.dadosAposExluir)
 }
 
-encontrar(){
-    let findID = document.getElementById('findId').value
-    let getArray = localStorage.getItem('save')
-    
-    let passarArray = JSON.parse(getArray)
-    console.log (passarArray)
-    for(let i = 0; i <passarArray.length; i++){
-        console.log(passarArray[findID])
-    }
-
-
-}
 atualizar(){
-    //encontrar o id do elemento e depois alterar
+debugger
+    let getArray = localStorage.getItem('save')
+    let passarArray = JSON.parse(getArray)
+    let titulo = document.getElementById('findNome').value
+    let novoNome = document.getElementById('attNome').value
+    let index = passarArray.findIndex( x => x.nome/*campo do array*/ === titulo) /*campo do getbyId*/
+     if (index < 0 ){
+     alert('nome não encontrado')
+     return;
+     }
+passarArray[index].nome = novoNome
 
-    let newNome = document.getElementById('attNome')
-    let newValor = document.getElementById('attValor')
+    console.log (passarArray)
+    localStorage.setItem('save', JSON.stringify(passarArray))
 
-    this.nome = newNome
-    this.valor = newValor
+    let mostrarNovo = localStorage.getItem('save')
+
+    this.retorno.innerHTML=` ${mostrarNovo}`
 }
 
+gerarAleatorio(){
+    let getArray = localStorage.getItem('save')
+    let passarArray = JSON.parse(getArray)
+
+    let times = 0
+    while(times <= 5){
+        let stringAleatoria =''
+        let caracteres = 'ABCDEFGHIJKLMNOPQRSTUVXWYYZabcdefghijklmnopqrstuvxwyz0123456789'
+        for(let i = 0; i <= 5; i++){
+            stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length))
+        }
+        const obj={
+            'aleatorio1': stringAleatoria,
+            'aleatorio2': stringAleatoria,
+            'aleatorio3': stringAleatoria,
+            'aleatorio4': stringAleatoria,
+            'aleatorio5': stringAleatoria,
+        }
+        conjunto.push(obj)
+        times++
+    }
+    console.log(conjunto)
+}
 
 }
 let store = new Store
