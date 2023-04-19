@@ -20,8 +20,6 @@
                 <label for="nome">Nome:</label>             
                 <input type="text" name="nome" id="nome" placeholder="nome do produto">
                 
-
-                
                 <label for="valor">Valor:</label>
                 <input type="number" name="valor" id="valor" placeholder="valor do produto">
                 
@@ -34,20 +32,14 @@
                 <input type="button" value="Salvar" onclick="store.addProdutos()">
                 <input type="button" value="Exlcuir" onclick="store.excluir()">
 
-                
-                    <label for="findId">Qual Id deseja modificar:</label>
-                    <input type="number" placeholder="numero da Id" name="findId" id="findId">
-                    <input type="button" value="encontrar" onclick="store.encontrar()">
-                
-
-                
-                <input type="button" value="Atualizar" oncanplay="store.atualizar()">
-
                 <label for="attNome">Digite o novo nome</label>
+                <input type="text" placeholder="encontrar nome" name="findNome" id="findNome">
                 <input type="text" name="attNome" placeholder="novo nome" id="attNome">
 
                 <label for="attValor">Digite o novo valor</label>
                 <input type="number" name="attValor" placeholder="novo valor" id="attValor">
+                    <input type="button" value="atualizar" onclick="store.atualizar()">
+                    <input type="button" value="aleatorio" onclick="store.gerarAleatorio()">
                 
 
         </div>
