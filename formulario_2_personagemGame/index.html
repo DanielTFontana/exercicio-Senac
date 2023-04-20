@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Feira</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="conteiner">
+        <header>
+            <h1>Crie seu char</h1>
+            <p>Jogadores, sejam bem vindos!</p>
+        </header>
+
+        <main>
+
+            <div id="card">
+                <label for="nome">Nome do char:</label>
+                <input type="text" placeholder="nome" name="nome" id="nome">
+
+                <label for="profissao">Profissao:</label>
+                <select name="profissao" id="profissao">
+                    <option value="">Selecione sua profissao</option>
+                    <option value="arqueiro">Arqueiro</option>
+                    <option value="guerreiro">Guerreiro</option>
+                    <option value="mago">Mago</option>
+                    <option value="druida">Druida</option>
+                </select>
+
+                <label for="altura">Altura:</label>
+                <input type="number" placeholder="altura em metros" name="altura" id="altura"> 
+
+                <label for="peso">Peso:</label>
+                <input type="number" placeholder="peso em kg" name="peso" id="peso"> 
+                
+                <input type="button" onclick="produto.add()" value="Adicionar">
+                <input type="button" value="Deletar" onclick="produto.excluir()">
+            </div>
+                
+            <div id="content">
+                <h3>Lista de Personagens:</h3>
+             <table border="1">
+                <thead>
+                    <tr>
+                    <td id="imagemChar"></td>
+                    <td>Id</td>
+                    <td>Nome</td>
+                    <td>Profissao</td>
+                    <td>Altura</td>
+                    <td>Peso</td>
+                    <td>Ações</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                 
+                </tbody>
+             </table>
+                </div>
+            
+        </main>
+    </div>  
+</body>
+</html>
