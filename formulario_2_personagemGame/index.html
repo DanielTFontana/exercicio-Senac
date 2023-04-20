@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Feira</title>
+    <title>Cria seu char</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
     <div id="conteiner">
         <header>
-            <h1>Crie seu char</h1>
-            <p>Jogadores, sejam bem vindos!</p>
+            <img class="armas" src="./public/arbalesta-removebg-preview.png" alt="arbalesta">
+            <img class="armas" src="./public/cajado_mago-removebg-preview.png" alt="cajado mago">
+
+            <img id="titulo" src="./public/titulo-removebg-preview.png" alt="título">
+            
+            <img class="armas" src="./public/cajado_druid-removebg-preview.png" alt="cajado cruida">
+            <img class="armas" src="./public/espada_escudo-removebg-preview.png" alt="espada e escudo">
         </header>
 
         <main>
@@ -36,8 +41,8 @@
                 <label for="peso">Peso:</label>
                 <input type="number" placeholder="peso em kg" name="peso" id="peso"> 
                 
-                <input type="button" onclick="produto.add()" value="Adicionar">
-                <input type="button" value="Deletar" onclick="produto.excluir()">
+                <input type="button" onclick="char.add()" value="Adicionar">
+                <input type="button" value="Deletar" onclick="char.excluir()">
             </div>
                 
             <div id="content">
