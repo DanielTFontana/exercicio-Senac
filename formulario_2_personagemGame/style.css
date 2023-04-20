@@ -11,15 +11,19 @@
 header{
     color: #fff;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgb(0,0,0);
+    justify-content: center;
     background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(121,9,22,1) 50%, rgba(2,0,36,1) 100%);
     width: 100vw;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: bolder;
-    font-size: larger;
-    padding: 30px;
+    padding: 20px;
+
+}
+#titulo{
+    width: 450px;
+    height: 200px;
+}
+.armas{
+    width: 100px;
+    height: 150px;
 }
 #card{
     display: grid;
@@ -38,4 +42,10 @@ table tr td{
 img{
     width: 50px;
     height: 50px;
+}
+#botaoExcluir:hover{
+    cursor: pointer;
+}
+#botaoEditar:hover{
+    cursor: pointer;
 }
