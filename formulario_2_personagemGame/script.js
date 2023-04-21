@@ -12,14 +12,12 @@ class Character{
     }
     add(){
         this.lerDados()
-        console.log(char)
         this.criarChar()
         this.limpar()
         
     }
 
     lerDados(){
-        debugger
         this.nome=document.getElementById('nome').value
         this.profissao =document.getElementById('profissao').value
         this.altura =parseInt(document.getElementById('altura').value)
@@ -70,27 +68,28 @@ class Character{
     }
 
     criarChar(){
-        debugger
+        
         let tbody= document.getElementById('tbody')
         let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
         
-        console.log(obj2)
 
-
-
-        tbody.innerHTML += ` <tr id="${JSON.stringify(obj2.length)}">
-        <td> <img style="width: 50px; height: 50px;" src="${JSON.stringify(obj2.img)}"></td>
-        <td>${JSON.stringify(obj2.id)}</td>
-        <td>${JSON.stringify(obj2.nome)}</td>
-        <td>${JSON.stringify(obj2.profissao)}</td>
-        <td>${JSON.stringify(obj2.altura)}</td>
-        <td>${JSON.stringify(obj2.peso)}</td>
+        tbody.innerHTML ='';
+        for(let i = 0; i < obj2.length; i++){
+        
+        tbody.innerHTML += ` <tr id="${obj2[i].id}">
+        <td> <img style="width: 50px; height: 50px;" src="${obj2[i].img}"></td>
+        <td>${obj2[i].id}</td>
+        <td>${obj2[i].nome}</td>
+        <td>${obj2[i].profissao}</td>
+        <td>${obj2[i].altura}</td>
+        <td>${obj2[i].peso}</td>
         <td>
             <img id="botaoExcluir" src="./public/remove.png" onclick="char.excluir()" alt="">
             <img id="botaoEditar" src="./public/edit.png" onclick="char.editar()" alt="">
         </td>
         </tr>`
+    }
         console.log(this.arrayCharacter)
     }
     
@@ -101,15 +100,15 @@ class Character{
         document.getElementById('peso').value =''
 
     }
-        
-        
-        
-    
-
-
+       
     excluir(){
-        let deletarId =this.arrayCharacter.length
-        this.arrayCharacter.splice(parseInt(deletarId),1)
+        debugger
+        let getData = localStorage.getItem('save')
+        let tbody = document.getElementById('tbody')
+
+        let obj2 = JSON.parse(getData)
+        obj2.splice()
+        console.log(obj2)
         this.criarChar()
     }
     editar(){
