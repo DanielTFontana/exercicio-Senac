@@ -14,6 +14,7 @@ class Character{
         this.lerDados()
         this.criarChar()
         this.limpar()
+
         
     }
 
@@ -77,20 +78,20 @@ class Character{
         tbody.innerHTML ='';
         for(let i = 0; i < obj2.length; i++){
         
-        tbody.innerHTML += ` <tr id="${obj2[i].id}">
+        tbody.innerHTML += ` <tr class"linhaChar" id="${obj2[i].id}">
         <td> <img style="width: 50px; height: 50px;" src="${obj2[i].img}"></td>
-        <td>${obj2[i].id}</td>
+        <td id="idTd">${obj2[i].id}</td>
         <td>${obj2[i].nome}</td>
         <td>${obj2[i].profissao}</td>
         <td>${obj2[i].altura}</td>
         <td>${obj2[i].peso}</td>
         <td>
-            <img id="botaoExcluir" src="./public/remove.png" onclick="char.excluir()" alt="">
+            <img id="botaoExcluir" src="./public/remove.png" onclick="char.excluir(${obj2[i].id})" alt="">
             <img id="botaoEditar" src="./public/edit.png" onclick="char.editar()" alt="">
         </td>
         </tr>`
     }
-        console.log(this.arrayCharacter)
+
     }
     
     limpar(){
@@ -100,16 +101,30 @@ class Character{
         document.getElementById('peso').value =''
 
     }
-       
-    excluir(){
+
+    excluir(id){
+        alert('deletar'+ id)
         debugger
         let getData = localStorage.getItem('save')
-        let tbody = document.getElementById('tbody')
-
         let obj2 = JSON.parse(getData)
-        obj2.splice()
-        console.log(obj2)
-        this.criarChar()
+        
+        for(let i = 0; i < obj2.length; i++){
+            if(obj2[i].id == id){            
+            obj2.splice(obj2[i].id-1,1)
+            console.log(obj2)
+            this.arrayCharacter = obj2
+
+                for(let i = 0; i < obj2.length; i++){
+                    obj2[i].id = i+1
+                }       
+
+            }
+        }
+        let data = JSON.stringify(obj2)            
+            localStorage.setItem('save',data)
+            this.criarChar()
+        console.log(localStorage)
+        
     }
     editar(){
 
