@@ -71,7 +71,6 @@ class Character{
         let tbody= document.getElementById('tbody')
         let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
- 
         tbody.innerHTML ='';
         for(let i = 0; i < obj2.length; i++){
         
@@ -89,8 +88,7 @@ class Character{
         </tr>`
         
     }
-    let botaoSave = document.getElementById('botaoSave')
-    botaoSave.setAttribute('value', 'Adicionar')
+
     }
     
     limpar(){
@@ -105,6 +103,7 @@ class Character{
         let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
         
+        if(confirm(`Deseja deletar o char id:${id}?`)){
         for(let i = 0; i < obj2.length; i++){
             if(obj2[i].id == id){            
                 obj2.splice(obj2[i].id-1,1)
@@ -116,56 +115,65 @@ class Character{
 
             }
         }
-        let data = JSON.stringify(obj2)            
+            let data = JSON.stringify(obj2)            
             localStorage.setItem('save',data)
             this.criarChar()
-        
+        }   
     }
-    editar(id){
-        
-        document.getElementById('nome').focus()
-        let botaoSave = document.getElementById('botaoSave')
-        botaoSave.setAttribute('value', 'Salvar')
-        let getData = localStorage.getItem('save')
 
+    editar(id){
+        document.getElementById('nome').focus()
+        let buttonCase = document.getElementById('buttonCase')
+        let botaoSave = document.getElementById('botaoSave')
+        buttonCase.removeChild(botaoSave)
+        let SalvarBtn = buttonCase.innerHTML = `<input type="button" value= "Salvar">`
+       
+         SalvarBtn.addEventListener(onclick,this.salvar(id))
+
+        let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
 
         for(let i = 0; i < obj2.length; i++){
-            if(obj2[i].id == id){            
+            if(obj2[i].id == id){
                 obj2[i].nome = ''
                 obj2[i].profissao = ''
                 obj2[i].altura = ''
-                obj2[i].peso = ''
-                this.arrayCharacter = obj2
+                obj2[i].peso = ''        
+                document.getElementById('nome').value =''               
+                document.getElementById('profissao').value =''
+                document.getElementById('altura').value =''
+                document.getElementById('peso').value =''
+
             }   
         }
-            let data = JSON.stringify(obj2)            
-            localStorage.setItem('save',data)
-            botaoSave.removeEventListener(onclick, char.criarChar())
-            botaoSave.addEventListener(onclick, char.salvar(id))
-    }
+        
 
-    salvar(id){
 
-        debugger
-        let getData = localStorage.getItem('save')
+}
+
+  salvar(id){
+
+    debugger
         let botaoSave = document.getElementById('botaoSave')
+        let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
         
         for(let i = 0; i < obj2.length; i++){
-                        
+
+            if(obj2[i].id == id){
                 obj2[i].nome = document.getElementById('nome').value     
                 obj2[i].profissao = document.getElementById('profissao').value
                 obj2[i].altura = parseInt(document.getElementById('altura').value)
                 obj2[i].peso =  parseInt(document.getElementById('peso').value)
-                
-              
+            }
+
         }
         this.arrayCharacter = obj2
-        botaoSave.removeEventListener(onclick, char.salvar(id))
-        botaoSave.addEventListener(onclick, char.criarChar())
-        this.criarChar()
+        let data = JSON.stringify(obj2)            
+        localStorage.setItem('save',data)
+        this.add()
     }
 
 }
 let char = new Character()
+
