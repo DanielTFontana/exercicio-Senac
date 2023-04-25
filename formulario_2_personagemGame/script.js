@@ -14,8 +14,6 @@ class Character{
         this.lerDados()
         this.criarChar()
         this.limpar()
-
-        
     }
 
     lerDados(){
@@ -73,25 +71,26 @@ class Character{
         let tbody= document.getElementById('tbody')
         let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
-        
-
+ 
         tbody.innerHTML ='';
         for(let i = 0; i < obj2.length; i++){
         
-        tbody.innerHTML += ` <tr class"linhaChar" id="${obj2[i].id}">
+        tbody.innerHTML += ` <tr id="${obj2[i].id}">
         <td> <img style="width: 50px; height: 50px;" src="${obj2[i].img}"></td>
-        <td id="idTd">${obj2[i].id}</td>
-        <td>${obj2[i].nome}</td>
-        <td>${obj2[i].profissao}</td>
-        <td>${obj2[i].altura}</td>
-        <td>${obj2[i].peso}</td>
+        <td id="tdId">${obj2[i].id}</td>
+        <td id="tdNome">${obj2[i].nome}</td>
+        <td id="tdProf">${obj2[i].profissao}</td>
+        <td id="tdAltura">${obj2[i].altura}</td>
+        <td id="tdPeso">${obj2[i].peso}</td>
         <td>
             <img id="botaoExcluir" src="./public/remove.png" onclick="char.excluir(${obj2[i].id})" alt="">
-            <img id="botaoEditar" src="./public/edit.png" onclick="char.editar()" alt="">
+            <img id="botaoEditar" src="./public/edit.png" onclick="char.editar(${obj2[i].id})" alt="">
         </td>
         </tr>`
+        
     }
-
+    let botaoSave = document.getElementById('botaoSave')
+    botaoSave.setAttribute('value', 'Adicionar')
     }
     
     limpar(){
@@ -103,16 +102,13 @@ class Character{
     }
 
     excluir(id){
-        alert('deletar'+ id)
-        debugger
         let getData = localStorage.getItem('save')
         let obj2 = JSON.parse(getData)
         
         for(let i = 0; i < obj2.length; i++){
             if(obj2[i].id == id){            
-            obj2.splice(obj2[i].id-1,1)
-            console.log(obj2)
-            this.arrayCharacter = obj2
+                obj2.splice(obj2[i].id-1,1)
+                this.arrayCharacter = obj2
 
                 for(let i = 0; i < obj2.length; i++){
                     obj2[i].id = i+1
@@ -123,11 +119,53 @@ class Character{
         let data = JSON.stringify(obj2)            
             localStorage.setItem('save',data)
             this.criarChar()
-        console.log(localStorage)
         
     }
-    editar(){
+    editar(id){
+        
+        document.getElementById('nome').focus()
+        let botaoSave = document.getElementById('botaoSave')
+        botaoSave.setAttribute('value', 'Salvar')
+        let getData = localStorage.getItem('save')
 
+        let obj2 = JSON.parse(getData)
+
+        for(let i = 0; i < obj2.length; i++){
+            if(obj2[i].id == id){            
+                obj2[i].nome = ''
+                obj2[i].profissao = ''
+                obj2[i].altura = ''
+                obj2[i].peso = ''
+                this.arrayCharacter = obj2
+            }   
+        }
+            let data = JSON.stringify(obj2)            
+            localStorage.setItem('save',data)
+            botaoSave.removeEventListener(onclick, char.criarChar())
+            botaoSave.addEventListener(onclick, char.salvar(id))
     }
+
+    salvar(id){
+
+        debugger
+        let getData = localStorage.getItem('save')
+        let botaoSave = document.getElementById('botaoSave')
+        let obj2 = JSON.parse(getData)
+        
+        for(let i = 0; i < obj2.length; i++){
+                        
+                obj2[i].nome = document.getElementById('nome').value     
+                obj2[i].profissao = document.getElementById('profissao').value
+                obj2[i].altura = parseInt(document.getElementById('altura').value)
+                obj2[i].peso =  parseInt(document.getElementById('peso').value)
+                
+              
+        }
+        this.arrayCharacter = obj2
+        botaoSave.removeEventListener(onclick, char.salvar(id))
+        botaoSave.addEventListener(onclick, char.criarChar())
+        this.criarChar()
+    }
+
 }
 let char = new Character()
