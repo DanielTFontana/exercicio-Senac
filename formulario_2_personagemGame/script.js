@@ -83,7 +83,7 @@ class Character{
         <td id="tdPeso">${obj2[i].peso}</td>
         <td>
             <img id="botaoExcluir" src="./public/remove.png" onclick="char.excluir(${obj2[i].id})" alt="">
-            <img id="botaoEditar" src="./public/edit.png" onclick="char.editar(${obj2[i].id})" alt="">
+            <img id="botaoEditar" src="./public/edit.png" onclick='char.editar( ${JSON.stringify(obj2[i])} )' alt="">
         </td>
         </tr>`
         
@@ -121,58 +121,57 @@ class Character{
         }   
     }
 
-    editar(id){
+    editar(dados){
+
         document.getElementById('nome').focus()
-        let buttonCase = document.getElementById('buttonCase')
-        let botaoSave = document.getElementById('botaoSave')
-        buttonCase.removeChild(botaoSave)
-        let SalvarBtn = buttonCase.innerHTML = `<input type="button" value= "Salvar">`
-       
-         SalvarBtn.addEventListener(onclick,this.salvar(id))
+        document.getElementById('nome').value = dados.nome
+        document.getElementById('profissao').value = dados.profissao
+        document.getElementById('altura').value = dados.altura
+        document.getElementById('peso').value = dados.peso
 
-        let getData = localStorage.getItem('save')
-        let obj2 = JSON.parse(getData)
+        document.getElementById('botaoAdd').innerText('Salvar')
+        // document.getElementById('nome').focus()
+        // let buttonCase = document.getElementById('buttonCase')
+        // let botaoAdd = document.getElementById('botaoAdd')
+        // buttonCase.removeChild(botaoAdd)
+        // let SalvarBtn = buttonCase.innerHTML = `<input type="button" value= "Salvar" onclick="char.salvar()">`       
 
-        for(let i = 0; i < obj2.length; i++){
-            if(obj2[i].id == id){
-                obj2[i].nome = ''
-                obj2[i].profissao = ''
-                obj2[i].altura = ''
-                obj2[i].peso = ''        
-                document.getElementById('nome').value =''               
-                document.getElementById('profissao').value =''
-                document.getElementById('altura').value =''
-                document.getElementById('peso').value =''
+        // let getData = localStorage.getItem('save')
+        // let obj2 = JSON.parse(getData)
 
-            }   
-        }
-        
-
+        // for(let i = 0; i < obj2.length; i++){
+        //     if(obj2[i].id == id){
+        //         obj2[i].nome = ''
+        //         obj2[i].profissao = ''
+        //         obj2[i].altura = ''
+        //         obj2[i].peso = ''        
+        //     }   
+        // }
 
 }
 
-  salvar(id){
+//   salvar(){
 
-    debugger
-        let botaoSave = document.getElementById('botaoSave')
-        let getData = localStorage.getItem('save')
-        let obj2 = JSON.parse(getData)
+//     debugger
+//         let botaoAdd = document.getElementById('botaoAdd')
+//         let getData = localStorage.getItem('save')
+//         let obj2 = JSON.parse(getData)
         
-        for(let i = 0; i < obj2.length; i++){
+//         for(let i = 0; i < obj2.length; i++){
 
-            if(obj2[i].id == id){
-                obj2[i].nome = document.getElementById('nome').value     
-                obj2[i].profissao = document.getElementById('profissao').value
-                obj2[i].altura = parseInt(document.getElementById('altura').value)
-                obj2[i].peso =  parseInt(document.getElementById('peso').value)
-            }
+//             if(obj2[i].id == id){
+//                 obj2[i].nome = document.getElementById('nome').value     
+//                 obj2[i].profissao = document.getElementById('profissao').value
+//                 obj2[i].altura = parseInt(document.getElementById('altura').value)
+//                 obj2[i].peso =  parseInt(document.getElementById('peso').value)
+//             }
 
-        }
-        this.arrayCharacter = obj2
-        let data = JSON.stringify(obj2)            
-        localStorage.setItem('save',data)
-        this.add()
-    }
+//         }
+//         this.arrayCharacter = obj2
+//         let data = JSON.stringify(obj2)            
+//         localStorage.setItem('save',data)
+//         this.add()
+//     }
 
 }
 let char = new Character()
