@@ -26,8 +26,9 @@ header{
     height: 150px;
 }
 #card{
-    display: grid;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
     border: 1px solid black;
     background-color: rgb(231, 231, 231);
     border-radius: 2px;
@@ -35,9 +36,26 @@ header{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     gap: 10px   ;
 }
-
-table tr td{
-    padding:20px;
+#content{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    border: 1px solid black;
+}
+table{
+    border: 1px solid rgba(124, 36, 22, 0.626);
+    padding: 10px;
+    width: 400px;
+}
+tr{
+    border: 1px solid rgb(210, 80, 16);
+    display: flex;
+    justify-content: space-around;
+}
+td{
+    border: 1px solid rgb(210, 80, 16);
 }
 img{
     width: 50px;
