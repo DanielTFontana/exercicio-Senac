@@ -9,18 +9,28 @@ class Character{
         this.peso = 0
         this.img = ''
         this.arrayCharacter = []
+        this.editId = null
     }
     add(){
-        this.lerDados()
-        this.criarChar()
+        debugger
+        
+        if(this.editId != null){
+            
+            this.salvar(this.editId)
+        }
+        else{
+            this.lerDados()
+            this.criarChar()
+        }
         this.limpar()
+        console.log(this.editId)
     }
 
     lerDados(){
         this.nome=document.getElementById('nome').value
         this.profissao =document.getElementById('profissao').value
-        this.altura =parseInt(document.getElementById('altura').value)
-        this.peso =parseInt(document.getElementById('peso').value)
+        this.altura =document.getElementById('altura').value
+        this.peso =document.getElementById('peso').value
 
         let selectValue = document.getElementById('profissao').value
 
@@ -122,57 +132,63 @@ class Character{
     }
 
     editar(dados){
-
+        this.editId = dados.id
         document.getElementById('nome').focus()
         document.getElementById('nome').value = dados.nome
         document.getElementById('profissao').value = dados.profissao
         document.getElementById('altura').value = dados.altura
         document.getElementById('peso').value = dados.peso
 
-        document.getElementById('botaoAdd').innerText('Salvar')
-        // document.getElementById('nome').focus()
-        // let buttonCase = document.getElementById('buttonCase')
-        // let botaoAdd = document.getElementById('botaoAdd')
-        // buttonCase.removeChild(botaoAdd)
-        // let SalvarBtn = buttonCase.innerHTML = `<input type="button" value= "Salvar" onclick="char.salvar()">`       
+        document.getElementById('botaoAdd').setAttribute('value','Salvar')
 
-        // let getData = localStorage.getItem('save')
-        // let obj2 = JSON.parse(getData)
-
-        // for(let i = 0; i < obj2.length; i++){
-        //     if(obj2[i].id == id){
-        //         obj2[i].nome = ''
-        //         obj2[i].profissao = ''
-        //         obj2[i].altura = ''
-        //         obj2[i].peso = ''        
-        //     }   
-        // }
+        console.log(this.editId)
 
 }
 
-//   salvar(){
+    salvar(editId){
 
-//     debugger
-//         let botaoAdd = document.getElementById('botaoAdd')
-//         let getData = localStorage.getItem('save')
-//         let obj2 = JSON.parse(getData)
-        
-//         for(let i = 0; i < obj2.length; i++){
+    debugger
+    let getData = localStorage.getItem('save')
+    let obj2 = JSON.parse(getData)
 
-//             if(obj2[i].id == id){
-//                 obj2[i].nome = document.getElementById('nome').value     
-//                 obj2[i].profissao = document.getElementById('profissao').value
-//                 obj2[i].altura = parseInt(document.getElementById('altura').value)
-//                 obj2[i].peso =  parseInt(document.getElementById('peso').value)
-//             }
+    for(let i = 0; i < obj2.length; i++){
+            if(obj2[i].id == editId){
+                
+                obj2[i].nome = document.getElementById('nome').value     
+                obj2[i].profissao = document.getElementById('profissao').value
+                obj2[i].altura = document.getElementById('altura').value
+                obj2[i].peso =  document.getElementById('peso').value
+                this.arrayCharacter = obj2
+                }
+                
+                switch (obj2[i].profissao){
+                    case 'arqueiro':
+                        obj2[i].img = './public/archer-removebg-preview.png';
+                        break
+                    
+                    case 'guerreiro':
+                        obj2[i].img = './public/kina-removebg-preview.png';
+                        break
 
-//         }
-//         this.arrayCharacter = obj2
-//         let data = JSON.stringify(obj2)            
-//         localStorage.setItem('save',data)
-//         this.add()
-//     }
+                    case 'mago':
+                        obj2[i].img = './public/mage-removebg-preview.png'
+                        break
 
+                    case 'druida':
+                        obj2[i].img = './public/druid-removebg-preview.png'
+                        break
+                    }
+            let verificar = !Object.values(obj2[i]).every(x => x !== "" && x !== null)
+            if(verificar){
+            alert('Campo Vazio')
+            return;}
+            }
+            
+            this.editId = null
+            localStorage.setItem('save',JSON.stringify(obj2))
+            document.getElementById('botaoAdd').setAttribute('value','Adicionar')
+            this.criarChar()
+
+}
 }
 let char = new Character()
-
