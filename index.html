@@ -9,8 +9,8 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <div id="conteiner">
-        <header>
+    
+    <!-- <header>
             <img class="armas" src="./public/arbalesta-removebg-preview.png" alt="arbalesta">
             <img class="armas" src="./public/cajado_mago-removebg-preview.png" alt="cajado mago">
 
@@ -18,16 +18,19 @@
             
             <img class="armas" src="./public/cajado_druid-removebg-preview.png" alt="cajado cruida">
             <img class="armas" src="./public/espada_escudo-removebg-preview.png" alt="espada e escudo">
-        </header>
+        </header> -->
+    <div id="conteiner">
+        
+        <img id="titulo" src="./public/titulo-removebg-preview.png" alt="título">
 
         <main>
 
             <div id="card">
                 <label for="nome">Nome do char:</label>
-                <input type="text" placeholder="nome" name="nome" id="nome">
+                <input class="inputChar" type="text" placeholder="nome" name="nome" id="nome">
 
                 <label for="profissao">Profissao:</label>
-                <select name="profissao" id="profissao">
+                <select class="inputChar" name="profissao" id="profissao">
                     <option value="">Selecione sua profissao</option>
                     <option value="arqueiro">Arqueiro</option>
                     <option value="guerreiro">Guerreiro</option>
@@ -36,18 +39,19 @@
                 </select>
 
                 <label for="altura">Altura:</label>
-                <input type="number" placeholder="altura em metros" name="altura" id="altura"> 
+                <input class="inputChar" type="number" placeholder="altura em metros" name="altura" id="altura"> 
 
                 <label for="peso">Peso:</label>
-                <input type="number" placeholder="peso em kg" name="peso" id="peso"> 
+                <input class="inputChar" type="number" placeholder="peso em kg" name="peso" id="peso"> 
                 
-                <input type="button" id="botaoSave" onclick="char.add()" value="Adicionar">
-                <input type="button" value="Deletar" onclick="char.excluir()">
+                <div id="buttonCase">
+                    <input type="button" id="botaoAdd" onclick="char.add()" value="Adicionar">
+                </div>
             </div>
                 
             <div id="content">
                 <h3>Lista de Personagens:</h3>
-             <table border="1">
+             <table>
                 <thead>
                     <tr>
                     <td id="imagemChar"></td>
@@ -69,4 +73,3 @@
     </div>  
 </body>
 </html>
-
